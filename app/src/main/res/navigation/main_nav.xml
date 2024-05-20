@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.challenge1.fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/favoritos"
+        android:name="com.example.challenge1.fragments.Favoritos"
+        android:label="fragment_favoritos"
+        tools:layout="@layout/fragment_favoritos" />
+    <fragment
+        android:id="@+id/adopcion"
+        android:name="com.example.challenge1.fragments.Adopcion"
+        android:label="fragment_adopcion"
+        tools:layout="@layout/fragment_adopcion" />
+    <fragment
+        android:id="@+id/publicacion"
+        android:name="com.example.challenge1.fragments.Publicacion"
+        android:label="fragment_publicacion"
+        tools:layout="@layout/fragment_publicacion" />
+    <fragment
+        android:id="@+id/perfil2"
+        android:name="com.example.challenge1.fragments.Perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.challenge1.fragments.Settings"
+        android:label="fragment_settings2"
+        tools:layout="@layout/fragment_settings2" />
+</navigation>
