@@ -3,6 +3,8 @@ package com.example.challenge1.activities
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -38,24 +40,35 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         bottomNavView = findViewById(R.id.bottom_bar)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         val navController = navHostFragment.navController
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.favoritos, R.id.adopcion, R.id.publicacion),
-            drawerLayout
-        )
-
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        bottomNavView.setupWithNavController(navController)
         navigationView.setupWithNavController(navController)
-
         navController.addOnDestinationChangedListener { _, _, _ ->
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.hamburger)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_menu_24)
         }
+        NavigationUI.setupWithNavController(bottomNavView, navController)
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+            invalidateOptionsMenu() // Cambia de fragment se llama a onPrepareOptionsMenu
+        }
+        // Configurar ActionBar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) //Mostrar icono hamburguesa
+
+
+
     }
 
+
+
     override fun onSupportNavigateUp(): Boolean {
-        val navController = navHostFragment.navController
-        return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp()
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        return false
     }
 }
